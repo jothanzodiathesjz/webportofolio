@@ -1,24 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import Nav from "./components/Nav";
+import { useEffect, useState } from "react";
+
+import Spiner from "./components/Spiner";
+
+import Header from "./components/Header";
+import Banner from "./components/Banner";
+import About from "./components/About";
+import Services from "./components/Services";
+import Work from "./components/Work";
+import Contact from "./components/Contact";
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  const loadingSet = () => {
+    setInterval(() => {
+      setIsLoading(false);
+    }, 3000);
+  };
+
+  useEffect(() => {
+    loadingSet();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {isLoading ? (
+        <Spiner />
+      ) : (
+        <div className="bg-[#03001C] overflow-hidden">
+          <Header />
+          <Banner />
+          <Nav />
+          <About />
+          <Services />
+          <Work />
+          <Contact />
+          {/* <div className="h-[4000px]"></div> */}
+        </div>
+      )}
+
+      {/* 
+      <Hero>
+        
+      </Hero> */}
+    </>
   );
 }
 
